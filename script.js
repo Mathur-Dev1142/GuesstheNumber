@@ -1,4 +1,4 @@
-const randomNumber = parseInt(Math.random() * 100 + 1);
+let randomNumber = parseInt(Math.random() * 100 + 1);
 
 const submit = document.querySelector("#subt");
 const userInput = document.querySelector("#guessField");
@@ -32,14 +32,14 @@ function validateGuess(guess) {
     alert("Please Entere a number less than 100");
   } else {
     prevGuess.push(guess);
-  }
-  if (numGuess === 11) {
-    displayGuess(guess);
-    displayMessage(`Game Over. Random number was ${randomNumber}`);
-    endGame();
-  } else {
-    displayGuess(guess);
-    checkGuess();
+    if (numGuess === 11) {
+      displayGuess(guess);
+      displayMessage(`Game Over. Random number was ${randomNumber}`);
+      endGame();
+    } else {
+      displayGuess(guess);
+      checkGuess(guess);
+    }
   }
 }
 
@@ -70,6 +70,7 @@ function endGame() {
   userInput.setAttribute("disabled", "");
   p.classList.add("button");
   p.innerHTML = `<h2 id = "newGame">Start New Game</h2>`;
+  lowOrhi.innerHTML = "";
   startOver.appendChild(p);
   playGame = false;
   newGame();
